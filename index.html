@@ -35,11 +35,11 @@
         <div class="col-4">
             Quick transfer:
             <br>
-            <input v-model="quick.amount" v-on:input="quickTransfer()" type="number">
+            Starting amount: <input v-model="quick.amount" v-on:input="quickTransfer()" type="number">
             <br>
-            <input v-model="quick.divider" v-on:input="quickTransfer()" type="number">
+            Amount of Players<input v-model="quick.divider" v-on:input="quickTransfer()" type="number">
             <br>
-            <span>Send: {{ quick.result }}</span>
+            <span>Send: | {{ quick.result }} | per person</span>
         </div>
     </div>
     <hr>
