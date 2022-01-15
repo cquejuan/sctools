@@ -197,7 +197,7 @@
         },
         quickTransfer: function (amount) {
           let x = Math.floor(amount * (1 - session.fee/100))
-          quick.result = new Intl.NumberFormat('en-in').format(x)
+          quick.result = new Intl.NumberFormat().format(x)
         },
         controlAll: function (state) {
 
