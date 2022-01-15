@@ -74,7 +74,7 @@
         <tr>
           <td class="text-center"><i v-on:click="addUser" class="bi bi-plus" style="cursor:pointer;"></i></td>
           <td class="text-center"></td>
-          <td><input id="addPlayer" v-model="player.name" type="text" placeholder="John_Doe" autofocus></td>
+          <td><input v-on:keyup.enter="addUser" id="addPlayer" v-model="player.name" type="text" placeholder="John_Doe" autofocus></td>
           <td><input v-model="player.time" type="number" placeholder="0" disabled></td>
           <td><input v-model="player.money" type="number" placeholder="0" disabled></td>
           <td><input v-model="player.fees" type="number" placeholder="0" disabled></td>
@@ -204,7 +204,7 @@
         },
         addUser: function () {
           pos = session.players.map(function (e) { return e.name; }).indexOf(player.name);
-          if (pos === -1) {
+          if (pos === -1 && player.name !== "" && player.name !== null) {
             session.players.push({
               name: player.name,
               money: 0,
@@ -213,7 +213,7 @@
               active: true,
               starter: null,
               dividend: 0,
-              fees: [],
+              fees: .5,
               log: [],
               money: 0,
               display: {
