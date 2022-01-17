@@ -265,6 +265,7 @@
         if (player.active === true) {
           if (player.starter === null) {
             player.starter = now - player.counter
+            
           }
           player.counter = now - player.starter;
           sec = player.counter % 60;
@@ -275,7 +276,6 @@
             min: min.toLocaleString(undefined, { minimumIntegerDigits: 2 }),
             hours: hours.toLocaleString(undefined, { minimumIntegerDigits: 2 })
           }
-          console.log(sec)
           player.display.timer = `${display.hours}:${display.min}:${display.sec}`
         } else if (player.active === false) {
           player.starter = null
@@ -286,8 +286,7 @@
           session.time = 0
         }
       });
-      console.log("ping")
-    })
+    }, 100)
 
     //Give player's a fair cut based on activity
     let dividend = setInterval(() => {
@@ -302,14 +301,14 @@
         x += player.counter;
       });
       session.players.forEach(player => {
-        let y = Math.floor(player.counter / x * 10000) / 100
-        let z = Math.floor(session.amount * y / 100)
-        let a = Math.floor(z * (1 - (session.fee / 100)))
-        player.dividend = `${y}%`
-        player.money = z
-        player.total = a
+        let y = player.counter / x
+        let z = session.amount * y
+        let a = z * (1 - (session.fee / 100))
+        player.dividend = (Math.floor(y * 10000) / 100) + "%"
+        player.money = Math.floor(z)
+        player.total = Math.floor(a)
       });
-    })
+    }, 10)
     function controlAll(stage) {
       session.players.forEach(player => {
         if (stage === 0) {
