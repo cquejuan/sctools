@@ -311,7 +311,7 @@
         player.dividend = (Math.floor(y * 10000) / 100) + "%"
         player.money = new Intl.NumberFormat().format(Math.floor(z))
         player.total = new Intl.NumberFormat().format(Math.floor(a))
-        player.deductions = new Intl.NumberFormat().format(Math.floor(y) - Math.floor(a))
+        player.deductions = new Intl.NumberFormat().format(Math.floor(a - z))
       });
     }, 10)
     function controlAll(stage) {
