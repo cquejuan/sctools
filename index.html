@@ -79,7 +79,7 @@
           <td>{{ player.dividend }}</td>
           <td>{{ player.money }}</td>
           <td>{{ player.fees }}%</td>
-          <td>{{ player.display.deductions }}</td>
+          <td>{{ player.deductions }}</td>
           <td>{{ player.total }}</td>
         </tr>
         <tr>
@@ -128,6 +128,7 @@
         fees: [],
         log: [],
         money: 0,
+        deductions: 0,
         display: {
           timer: "",
           money: "",
@@ -147,6 +148,7 @@
         fees: [],
         log: [],
         money: 0,
+        deductions: 0,
         display: {
           timer: "",
           money: "",
@@ -167,6 +169,7 @@
       fees: [],
       log: [],
       money: 0,
+      deductions: 0,
       display: {
         timer: "",
         money: "",
@@ -223,6 +226,7 @@
               fees: .5,
               log: [],
               money: 0,
+              deductions: 0,
               display: {
                 timer: "",
                 money: "",
@@ -305,8 +309,9 @@
         let z = session.amount * y
         let a = z * (1 - (session.fee / 100))
         player.dividend = (Math.floor(y * 10000) / 100) + "%"
-        player.money = Math.floor(z)
-        player.total = Math.floor(a)
+        player.money = new Intl.NumberFormat().format(Math.floor(z))
+        player.total = new Intl.NumberFormat().format(Math.floor(a))
+        player.deductions = new Intl.NumberFormat().format(Math.floor(y) - Math.floor(a))
       });
     }, 10)
     function controlAll(stage) {
